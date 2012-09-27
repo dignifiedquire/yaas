@@ -37,11 +37,10 @@ app/
 config/
   testacular/
 vendor/
-    img/
-    font/
-    script/
-    style/
-
+  img/
+  font/
+  script/
+  style/
 ```
 
 ## How does this magic happen?
