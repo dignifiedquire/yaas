@@ -11,7 +11,7 @@ When it's setup it will make your development live much easier. You will be able
 
 * [Anuglar.js](http://angularjs.org) for the framework
 * [CoffeeScript](http://coffeescript.org/) for the source
-* [SASS](http://sass-lang.com/) for the style
+* [LESS](http://lesscss.org/) for the style
 * [Bootstrap](twitter.github.com/bootstrap/) with [FontAwesome](http://fortawesome.github.com/Font-Awesome/) for the layout
 * [Jade](http://jade-lang.com/) for the templates
 * [Phantomjs](http://phantomjs.org/) for the headless
