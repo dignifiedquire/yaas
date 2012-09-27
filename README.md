@@ -22,54 +22,26 @@ When it's setup it will make your development live much easier. You will be able
 ```
 build/
 app/
-    assets/
-        style/
-            app.scss
-        img/
-        font/
-        
+  assets/
+    style/
+      app.scss
+    img/
+    font/
+  controllers/
+  directives/
+  filters/
+  partials/
+  services/
+  index.jade
+  app.coffee
+config/
+  testacular/
 vendor/
-    components/
     img/
     font/
     script/
     style/
 
-        
-     
- index.html        --> app layout file (the main html template file of the app)
- script/               --> javascript files
-   controllers     --> application controllers
-     first.coffee
-   filters         --> custom angular filters
-     first.coffee
-   services        --> custom angular services
-     first.coffee
-   widgets         --> custom angular widgets
-     first.coffee
- partials/         --> angular view partials (partial html templates)
-   partial1.html
-   partial2.html
- vendor/           --> third party code handeld via bower
-   img/
-   script/
-   style/
-
-config/testacular.conf.js        --> config file for running unit tests with Testacular
-config/testacular-e2e.conf.js    --> config file for running e2e tests with Testacular
-
-
-test/               --> test source files and libraries
-  e2e/              -->
-    runner.html     --> end-to-end test runner (open in your browser to run)
-    scenarios.js    --> end-to-end specs
-  lib/
-    angular/                --> angular testing libraries
-      angular-mocks.js      --> mocks that replace certain angular services in tests
-      angular-scenario.js   --> angular's scenario (end-to-end) test runner library
-      version.txt           --> version file
-  unit/                     --> unit level specs/tests
-    controllersSpec.js      --> specs for controllers
 ```
 
 ## How does this magic happen?
@@ -88,6 +60,6 @@ This project uses [grunt](http://gruntjs.com) for the build process and all the 
 ## What can I do for it?
 * file issues
 * fix issues
-* contribute tests
+
 
 
