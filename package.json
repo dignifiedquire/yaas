@@ -1,0 +1,14 @@
+{
+  "name": "yaas",
+  "version": "0.1.0",
+  "description": "yet another anuglar.js seed app",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Dignifiedquire/yaas.git"
+  },
+  "author": "dignifiedquire",
+  "license": "BSD"
+}
