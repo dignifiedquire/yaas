@@ -21,6 +21,8 @@ When it's setup it will make your development live much easier. You will be able
 ## Where do all my files live?
 ```
 build/
+  dev/
+  prod/
 app/
   assets/
     style/

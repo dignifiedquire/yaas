@@ -8,36 +8,53 @@ module.exports = (grunt) ->
 
   # Project configuration
   grunt.initConfig
+    clean:
+      development: "#{DEV_PATH}"
     coffee:
-      build:
+      development:
         files:
-          'build/development/js/main.js': [ 
+          'build/development/js/app.js': [ 
             'app/*.coffee'
             'app/controllers/*.coffee'
             'app/directives/*.coffee'
             'app/filters/*.coffee'
             'app/services/*.coffee'
           ]
-
+          
+    concat:
+      development:
+        files:
+          'build/development/js/vendor.js': 'vendor/script/*.js'
+    jade:
+      development:
+        options:
+          data:
+            debug: true
+        files:
+          'build/development/index.html': "#{APP_PATH}/index.jade"
+          'build/development/partials/*.html': "#{APP_PATH}/partials/*.jade"
     server:
       port: 8080
-      base: BUILD_PATH
+      base: "./#{DEV_PATH}"
 
     watch:
       coffee:
-        files: APP_PATH
-        tasks: ''
+        files: ['app/*.coffee', 'app/**/*.coffee']
+        tasks: 'coffee:development'
 
-
+  
 
   # Dependencies
   grunt.loadNpmTasks 'grunt-contrib-coffee'
+  grunt.loadNpmTasks 'grunt-contrib-jade'  
   grunt.loadNpmTasks 'grunt-contrib-less'  
   grunt.loadNpmTasks 'grunt-contrib-copy'
   grunt.loadNpmTasks 'grunt-contrib-clean'
   
   # Aliases
-  grunt.registerTask 'default', 'clean build'
+  grunt.registerTask 'development', 'clean:development coffee:development jade:development'
+  
+  grunt.registerTask 'default', 'clean development server watch'
 
 
     
