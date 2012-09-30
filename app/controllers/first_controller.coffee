@@ -2,10 +2,10 @@
 
 'use strict'
 
-angular.module('app.controllers', [])
-.controller 'FirstController', [
+angular.module('app').controller 'FirstController', [
   '$scope'
-
-  ($scope) ->
-    $scope
+  '$rootScope'  
+  ($scope, $rootScope) ->
+    $scope.test = 'OK'
+    $rootScope.pageTitle = "yaas - view1"
 ]

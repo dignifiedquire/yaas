@@ -8,32 +8,32 @@ html(lang='en')
     meta(name='author', content='')
     title(ng-bind-template='{{pageTitle}}')
     link(rel='stylesheet', href='/css/app.css')
-    //-script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js')
     //if lte IE 7
       script(src='http://cdnjs.cloudflare.com/ajax/libs/json2/20110223/json2.js')
     //if lte IE 8
       script(src='//html5shiv.googlecode.com/svn/trunk/html5.js')
     script(src='/js/vendor.js')
     script(src='/js/app.js')
-  body(ng-controller='AppCtrl')
-    .wrapper
-      .navbar.navbar-static-top
-        .navbar-inner
-          .container
-            button.btn.btn-navbar(data-toggle='collapse', data-target='.nav-collapse')
-              span.icon-bar
-              span.icon-bar
-              span.icon-bar
-            a(href='/').brand yaas
-            .nav-collapse
-              div(ng-include="'/partials/navigation.html'")
-      .container.main-content
-        div(ng-view)
-        div yaas app: v<span app-version></span>
-      .push
-
-    footer.footer
-      .container
-        p
-          small
-            a(href='https://github.com/dignifiedquire/yaas') yaas | source
+  body(ng-controller='AppController')
+    .navbar.navbar-fixed-top.navbar-inverse
+      .navbar-inner
+        .container-fluid
+          button.btn.btn-navbar(data-toggle='collapse', data-target='.nav-collapse')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a(href='/').brand YAAS
+          .nav-collapse
+            div(ng-include="'/partials/navigation.html'")
+    .container-fluid
+      .row-fluid
+        .span12
+          .hero-unit
+            h1 Hello from YAAS
+            p Version:
+              span(app-version)
+          div(ng-view)
+      hr
+      footer
+        p &copy; 2012 Friedel Ziegelmayer | Get the source 
+          a(href='https://github.com/dignifiedquire/yaas') yaas@github

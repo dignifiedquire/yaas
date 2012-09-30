@@ -2,9 +2,7 @@
 
 'use strict'
 
-angular.module('app.controllers', [])
-
-.controller 'AppController', [
+angular.module('app').controller 'AppController', [
   '$scope'
   '$location'
   '$resource'
@@ -31,4 +29,5 @@ angular.module('app.controllers', [])
         return 'active'
       else
         return ''
+
 ]

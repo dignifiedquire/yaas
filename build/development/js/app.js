@@ -1,5 +1,4 @@
 (function() {
-  var App;
 
   angular.element(document).ready(function() {
     return angular.bootstrap(document, ['app']);
@@ -8,7 +7,7 @@
   'use strict';
 
 
-  App = angular.module('app', ['ngCookies', 'ngResource', 'app.controllers', 'app.directives', 'app.filters', 'app.services']);
+  window.App = angular.module('app', ['ngCookies', 'ngResource', 'app.directives', 'app.filters', 'app.services']);
 
 }).call(this);
 
@@ -18,10 +17,10 @@
     '$routeProvider', '$locationProvider', function($routeProvider, $locationProvider, config) {
       $routeProvider.when('/view1', {
         templateUrl: '/partials/first.html',
-        controller: FirstController
+        controller: 'FirstController'
       }).when('/view2', {
         templateUrl: '/partials/second.html',
-        controller: SecondController
+        controller: 'SecondController'
       }).otherwise({
         redirectTo: '/view1'
       });
@@ -34,7 +33,7 @@
 (function() {
   'use strict';
 
-  angular.module('app.controllers', []).controller('AppController', [
+  angular.module('app').controller('AppController', [
     '$scope', '$location', '$resource', '$rootScope', function($scope, $location, $resource, $rootScope) {
       $scope.$location = $location;
       $scope.$watch('$location.path()', function(path) {
@@ -55,9 +54,10 @@
 (function() {
   'use strict';
 
-  angular.module('app.controllers', []).controller('FirstController', [
-    '$scope', function($scope) {
-      return $scope;
+  angular.module('app').controller('FirstController', [
+    '$scope', '$rootScope', function($scope, $rootScope) {
+      $scope.test = 'OK';
+      return $rootScope.pageTitle = "yaas - view1";
     }
   ]);
 
@@ -66,9 +66,9 @@
 (function() {
   'use strict';
 
-  angular.module('app.controllers', []).controller('SecondController', [
-    '$scope', function($scope) {
-      return $scope;
+  angular.module('app').controller('SecondController', [
+    '$scope', '$rootScope', function($scope, $rootScope) {
+      return $rootScope.pageTitle = "yaas - view2";
     }
   ]);
 

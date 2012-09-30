@@ -1,56 +1,53 @@
-// base path to the bootstrap files
-@basePath: "bootstrap";
-
 // CSS Reset
-@import "@{basePath}/reset.less";
+@import "bootstrap/reset.less";
 
 // Core variables and mixins
-@import "@{basePath}/variables.less"; // Modify this for custom colors, font-sizes, etc
-@import "@{basePath}/mixins.less";
+@import "bootstrap/variables.less"; // Modify this for custom colors, font-sizes, etc
+@import "bootstrap/mixins.less";
 
 // Grid system and page structure
-@import "@{basePath}/scaffolding.less";
-@import "@{basePath}/grid.less";
-@import "@{basePath}/layouts.less";
+@import "bootstrap/scaffolding.less";
+@import "bootstrap/grid.less";
+@import "bootstrap/layouts.less";
 
 // Base CSS
-@import "@{basePath}/type.less";
-@import "@{basePath}/code.less";
-@import "@{basePath}/forms.less";
-@import "@{basePath}/tables.less";
+@import "bootstrap/type.less";
+@import "bootstrap/code.less";
+@import "bootstrap/forms.less";
+@import "bootstrap/tables.less";
 
 // Components: common
-//@import "@{basePath}/sprites.less";
+//@import "bootstrap/sprites.less";
 @import "fontAwesome/font-awesome.less";
-@import "@{basePath}/dropdowns.less";
-@import "@{basePath}/wells.less";
-@import "@{basePath}/component-animations.less";
-@import "@{basePath}/close.less";
+@import "bootstrap/dropdowns.less";
+@import "bootstrap/wells.less";
+@import "bootstrap/component-animations.less";
+@import "bootstrap/close.less";
 
 // Components: Buttons & Alerts
-@import "@{basePath}/buttons.less";
-@import "@{basePath}/button-groups.less";
-@import "@{basePath}/alerts.less"; // Note: alerts share common CSS with buttons and thus have styles in buttons.less
+@import "bootstrap/buttons.less";
+@import "bootstrap/button-groups.less";
+@import "bootstrap/alerts.less"; // Note: alerts share common CSS with buttons and thus have styles in buttons.less
 
 // Components: Nav
-@import "@{basePath}/navs.less";
-@import "@{basePath}/navbar.less";
-@import "@{basePath}/breadcrumbs.less";
-@import "@{basePath}/pagination.less";
-@import "@{basePath}/pager.less";
+@import "bootstrap/navs.less";
+@import "bootstrap/navbar.less";
+@import "bootstrap/breadcrumbs.less";
+@import "bootstrap/pagination.less";
+@import "bootstrap/pager.less";
 
 // Components: Popovers
-@import "@{basePath}/modals.less";
-@import "@{basePath}/tooltip.less";
-@import "@{basePath}/popovers.less";
+@import "bootstrap/modals.less";
+@import "bootstrap/tooltip.less";
+@import "bootstrap/popovers.less";
 
 // Components: Misc
-@import "@{basePath}/thumbnails.less";
-@import "@{basePath}/labels-badges.less";
-@import "@{basePath}/progress-bars.less";
-@import "@{basePath}/accordion.less";
-@import "@{basePath}/carousel.less";
-@import "@{basePath}/hero-unit.less";
+@import "bootstrap/thumbnails.less";
+@import "bootstrap/labels-badges.less";
+@import "bootstrap/progress-bars.less";
+@import "bootstrap/accordion.less";
+@import "bootstrap/carousel.less";
+@import "bootstrap/hero-unit.less";
 
 // Utility classes
-@import "@{basePath}/utilities.less"; // Has to be last to override when necessary
+@import "bootstrap/utilities.less"; // Has to be last to override when necessary
