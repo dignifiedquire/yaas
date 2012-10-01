@@ -19,7 +19,8 @@
     "grunt-contrib-less": "~0.3.0",
     "grunt-contrib-clean": "~0.3.0",
     "grunt-coffee": "0.0.6",
-    "grunt-contrib-jade": "~0.3.0"
+    "grunt-contrib-jade": "~0.3.0",
+    "testacular": "~0.3.7"
   },
   "devDependencies": {
     "grunt-contrib-jade": "https://github.com/dignifiedquire/grunt-contrib-jade/tarball/multiple"

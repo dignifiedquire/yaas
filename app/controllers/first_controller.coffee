@@ -2,7 +2,7 @@
 
 'use strict'
 
-angular.module('app').controller 'FirstController', [
+angular.module('app.controllers').controller 'FirstController', [
   '$scope'
   '$rootScope'  
   ($scope, $rootScope) ->

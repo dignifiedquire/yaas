@@ -2,7 +2,7 @@
 
 'use strict'
 
-angular.module('app').controller 'AppController', [
+angular.module('app.controllers', ['ngResource']).controller 'AppController', [
   '$scope'
   '$location'
   '$resource'
@@ -29,5 +29,5 @@ angular.module('app').controller 'AppController', [
         return 'active'
       else
         return ''
-
+    $scope.pageTitle = "test"
 ]

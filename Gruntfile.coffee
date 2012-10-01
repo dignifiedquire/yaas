@@ -21,7 +21,12 @@ module.exports = (grunt) ->
             'app/filters/*.coffee'
             'app/services/*.coffee'
           ]
-          
+          'test/unit/js/*.js': 'test/unit/**/*.coffee'
+      config:
+        options:
+          bare: true
+        files:
+          'config/testacular/*.js': 'config/testacular/*.coffee'
     concat:
       development:
         files:
@@ -68,12 +73,12 @@ module.exports = (grunt) ->
           'build/development/index.html': "#{APP_PATH}/index.jade"
           'build/development/partials/*.html': "#{APP_PATH}/partials/*.jade"
     server:
-      port: 8080
+      port: 8002
       base: "./#{DEV_PATH}"
 
     watch:
       coffee:
-        files: ['app/*.coffee', 'app/**/*.coffee']
+        files: ['app/*.coffee', 'app/**/*.coffee', 'test/unit/**/*.coffee']
         tasks: 'coffee:development'
       concat:
         files: ['vendor/script/**/*.js', 'vendor/style/**/*.css']
@@ -84,7 +89,61 @@ module.exports = (grunt) ->
       less:
         files: ['app/assets/style/*.less']
         tasks: 'jade:development'
+      config:
+        files: ['config/testacular/*.coffee']
+        tasks: 'coffee:config'
+
+    testacularServer:
+      unit:
+        options:
+          configFile: 'config/testacular/unit.js'
+      e2e:
+        options:
+          configFile: 'config/testacular/e2e.js'
+    testacularRun:
+      unit:
+        options:
+          runnerPort: 9201
+      e2e:
+        options:
+          runnerPort: 9202
   
+          
+
+  # Custom tasks
+  grunt.registerMultiTask 'testacularServer', 'Start testacularServer', ->
+    testacular = require('testacular')
+
+    # start the server
+    testacular.server.start @data.options
+    
+    done = @async()
+    done()
+    
+  grunt.registerMultiTask 'testacularRun', 'Run testacular tests', ->
+    if process.platform == 'win32'
+      testCmd = 'node_modules\\.bin\\testacular.cmd'
+    else 
+#      testCmd = 'node_modules/.bin/testacular'
+      testCmd = 'testacular'
+
+    runner = "--runner-port #{@data.options.runnerPort}"
+    
+    travisArgs = ['start', '--single-run', '--no-auto-watch', '--reporter=dots', '--browsers=Firefox'] 
+    testArgs = if process.env.TRAVIS then travisArgs else ['run', runner]
+
+    specDone = this.async()
+    
+    child = grunt.util.spawn {cmd: testCmd, args: testArgs}, (err, result, code) ->
+      #console.log code, result, err
+      grunt.log.error("Test failed...", code) if code
+      specDone()
+    #console.log child
+    child.stdout.pipe(process.stdout)
+    child.stderr.pipe(process.stderr)
+
+    
+
 
   # Dependencies
   grunt.loadNpmTasks 'grunt-contrib-coffee'
@@ -94,9 +153,11 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-clean'
   
   # Aliases
+  grunt.registerTask 'config', 'coffee:config'
   grunt.registerTask 'development', 'clean:development coffee:development jade:development concat:development less:development'
+  grunt.registerTask 'test', 'testacularServer'
   
-  grunt.registerTask 'default', 'clean development server watch'
+  grunt.registerTask 'default', 'clean config development testacularServer server watch'
 
 
     

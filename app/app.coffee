@@ -15,6 +15,7 @@ angular.element(document).ready ->
 window.App = angular.module('app', [
   'ngCookies'
   'ngResource'
+  'app.controllers'
   'app.directives'
   'app.filters'
   'app.services'
