@@ -35,18 +35,18 @@
 
   angular.module('app.controllers', ['ngResource']).controller('AppController', [
     '$scope', '$location', '$resource', '$rootScope', function($scope, $location, $resource, $rootScope) {
+      $scope.name = 'app controller';
       $scope.$location = $location;
       $scope.$watch('$location.path()', function(path) {
         return $scope.activeNavId = path || '/';
       });
-      $scope.getClass = function(id) {
+      return $scope.getClass = function(id) {
         if ($scope.activeNavId.substring(0, id.length) === id) {
           return 'active';
         } else {
           return '';
         }
       };
-      return $scope.pageTitle = "test";
     }
   ]);
 
@@ -57,8 +57,8 @@
 
   angular.module('app.controllers').controller('FirstController', [
     '$scope', '$rootScope', function($scope, $rootScope) {
-      $scope.test = 'OK';
-      return $rootScope.pageTitle = "yaas - view1";
+      $scope.name = 'first controller';
+      return $rootScope.pageTitle = 'YAAS - View1';
     }
   ]);
 
@@ -69,7 +69,8 @@
 
   angular.module('app.controllers').controller('SecondController', [
     '$scope', '$rootScope', function($scope, $rootScope) {
-      return $rootScope.pageTitle = "yaas - view2";
+      $scope.name = 'second controller';
+      return $rootScope.pageTitle = 'YAAS - View2';
     }
   ]);
 

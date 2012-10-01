@@ -9,6 +9,8 @@ angular.module('app.controllers', ['ngResource']).controller 'AppController', [
   '$rootScope'
   ($scope, $location, $resource, $rootScope) ->
 
+    $scope.name = 'app controller'
+
     # Uses the url to determine if the selected
     # menu item should have the class active.
     $scope.$location = $location
@@ -29,5 +31,5 @@ angular.module('app.controllers', ['ngResource']).controller 'AppController', [
         return 'active'
       else
         return ''
-    $scope.pageTitle = "test"
+    
 ]

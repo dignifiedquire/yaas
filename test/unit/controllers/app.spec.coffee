@@ -5,10 +5,10 @@
 # load chai assert
 expect = chai.expect
 
-# TODO figure out how to test Controllers that use modules
 
-describe "app controller", ->
-  AppController = undefined
+describe 'controller:app', ->
+  # initialize variables
+  AppController = scope = null
   
   beforeEach ->
     module('app.controllers')
@@ -16,7 +16,9 @@ describe "app controller", ->
       scope = $rootScope.$new()
       AppController = $controller('AppController', $scope: scope)
       
-  it "should be constructable", ->
+  it 'should be constructable', ->
     expect(!!AppController).to.be.true
 
 
+  it 'should have the correct name', ->
+    expect(scope.name).to.be.equal 'app controller'

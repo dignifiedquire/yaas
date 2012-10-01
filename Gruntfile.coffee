@@ -21,7 +21,6 @@ module.exports = (grunt) ->
             'app/filters/*.coffee'
             'app/services/*.coffee'
           ]
-          'test/unit/js/*.js': 'test/unit/**/*.coffee'
       config:
         options:
           bare: true
@@ -78,7 +77,7 @@ module.exports = (grunt) ->
 
     watch:
       coffee:
-        files: ['app/*.coffee', 'app/**/*.coffee', 'test/unit/**/*.coffee']
+        files: ['app/*.coffee', 'app/**/*.coffee']
         tasks: 'coffee:development'
       concat:
         files: ['vendor/script/**/*.js', 'vendor/style/**/*.css']
@@ -124,8 +123,8 @@ module.exports = (grunt) ->
     if process.platform == 'win32'
       testCmd = 'node_modules\\.bin\\testacular.cmd'
     else 
-#      testCmd = 'node_modules/.bin/testacular'
-      testCmd = 'testacular'
+      testCmd = 'node_modules/.bin/testacular'
+
 
     runner = "--runner-port #{@data.options.runnerPort}"
     

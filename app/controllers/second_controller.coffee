@@ -6,6 +6,7 @@ angular.module('app.controllers').controller 'SecondController', [
   '$scope'
   '$rootScope'
   ($scope, $rootScope) ->
-    $rootScope.pageTitle = "yaas - view2"    
+    $scope.name = 'second controller'
+    $rootScope.pageTitle = 'YAAS - View2'
 
 ]

@@ -6,7 +6,7 @@ files = [MOCHA, MOCHA_ADAPTER, 'vendor/script/angular/angular.js', 'test/vendor/
 
 autoWatch = false;
 
-browsers = ['Chrome'];
+browsers = ['PhantomJS'];
 
 singleRun = false;
 

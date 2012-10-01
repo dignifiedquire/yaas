@@ -5,21 +5,23 @@
 
   expect = chai.expect;
 
-  describe("app controller", function() {
-    var AppController;
-    AppController = void 0;
+  describe('app controller', function() {
+    var AppController, scope;
+    AppController = scope = null;
     beforeEach(function() {
       module('app.controllers');
       return inject(function($rootScope, $controller) {
-        var scope;
         scope = $rootScope.$new();
         return AppController = $controller('AppController', {
           $scope: scope
         });
       });
     });
-    return it("should be constructable", function() {
+    it('should be constructable', function() {
       return expect(!!AppController).to.be["true"];
+    });
+    return it('should have the correct name', function() {
+      return expect(scope.name).to.be.equal('app controller');
     });
   });
 

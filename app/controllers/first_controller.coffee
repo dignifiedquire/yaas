@@ -6,6 +6,6 @@ angular.module('app.controllers').controller 'FirstController', [
   '$scope'
   '$rootScope'  
   ($scope, $rootScope) ->
-    $scope.test = 'OK'
-    $rootScope.pageTitle = "yaas - view1"
+    $scope.name = 'first controller'
+    $rootScope.pageTitle = 'YAAS - View1'
 ]
