@@ -10,6 +10,7 @@ module.exports = (grunt) ->
   grunt.initConfig
     clean:
       development: "#{DEV_PATH}"
+
     coffee:
       development:
         files:
@@ -48,7 +49,7 @@ module.exports = (grunt) ->
             'vendor/script/angular/angular-resource.js'
             'vendor/script/angular/angular-cookies.js'
             'vendor/script/angular/angular-loader.js'
-            'vendor/script/angular/angular-sanitize.js'            
+            'vendor/script/angular/angular-sanitize.js'
             #'vendor/script/**/*.js'
           ]
           'build/development/js/vendor.css': 'vendor/style/**/*.css'
@@ -106,60 +107,42 @@ module.exports = (grunt) ->
       e2e:
         options:
           runnerPort: 9202
-  
-          
+
+
 
   # Custom tasks
-  grunt.registerMultiTask 'testacularServer', 'Start testacularServer', ->
-    testacular = require('testacular')
+  grunt.loadTasks('tasks')
 
-    # start the server
-    testacular.server.start @data.options
-    
-    done = @async()
-    done()
-    
-  grunt.registerMultiTask 'testacularRun', 'Run testacular tests', ->
-    if process.platform == 'win32'
-      testCmd = 'node_modules\\.bin\\testacular.cmd'
-    else 
-      testCmd = 'node_modules/.bin/testacular'
-
-
-    runner = "--runner-port #{@data.options.runnerPort}"
-    
-    travisArgs = ['start', '--single-run', '--no-auto-watch', '--reporter=dots', '--browsers=Firefox'] 
-    testArgs = if process.env.TRAVIS then travisArgs else ['run', runner]
-
-    specDone = this.async()
-    
-    child = grunt.util.spawn {cmd: testCmd, args: testArgs}, (err, result, code) ->
-      #console.log code, result, err
-      grunt.log.error("Test failed...", code) if code
-      specDone()
-    #console.log child
-    child.stdout.pipe(process.stdout)
-    child.stderr.pipe(process.stderr)
-
-    
 
 
   # Dependencies
   grunt.loadNpmTasks 'grunt-contrib-coffee'
-  grunt.loadNpmTasks 'grunt-contrib-jade'  
-  grunt.loadNpmTasks 'grunt-contrib-less'  
+  grunt.loadNpmTasks 'grunt-contrib-jade'
+  grunt.loadNpmTasks 'grunt-contrib-less'
   grunt.loadNpmTasks 'grunt-contrib-copy'
   grunt.loadNpmTasks 'grunt-contrib-clean'
-  
+
   # Aliases
   grunt.registerTask 'config', 'coffee:config'
-  grunt.registerTask 'development', 'clean:development coffee:development jade:development concat:development less:development'
+  grunt.registerTask 'development', [
+    'clean:development'
+    'coffee:development'
+    'jade:development'
+    'concat:development'
+    'less:development'
+  ]
+
   grunt.registerTask 'test', 'testacularServer'
-  
-  grunt.registerTask 'default', 'clean config development testacularServer server watch'
+
+  grunt.registerTask 'default', [
+    'config'
+    'development'
+    'test'
+    'server'
+    'watch'
+  ]
 
 
-    
 
 
-    
+

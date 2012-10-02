@@ -15,7 +15,16 @@ When it's setup it will make your development live much easier. You will be able
 * [Bootstrap](twitter.github.com/bootstrap/) with [FontAwesome](http://fortawesome.github.com/Font-Awesome/) for the layout
 * [Jade](http://jade-lang.com/) for the templates
 * [Phantomjs](http://phantomjs.org/) for the headless
-* [Mocha](http://visionmedia.github.com/mocha/) for the tests
+* [Mocha](http://visionmedia.github.com/mocha/) and [Chai](http://chaijs.com/) for the tests
+
+## How do I get it?
+Install it via
+```bash
+$ git clone https://github.com/Dignifiedquire/yaas.git
+$ cd yaas
+$ npm install
+```
+If you want to use PhantomJS you need to get it [here](http://phantomjs.org/download.html).
 
 
 ## Where do all my files live?
