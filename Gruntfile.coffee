@@ -9,7 +9,7 @@ module.exports = (grunt) ->
   # Project configuration
   grunt.initConfig
     clean:
-      development: "#{DEV_PATH}"
+      development: [DEV_PATH]
 
     coffee:
       development:
@@ -25,8 +25,13 @@ module.exports = (grunt) ->
       config:
         options:
           bare: true
-        files:
-          'config/testacular/*.js': 'config/testacular/*.coffee'
+        files: [
+          expand: true
+          cwd: 'config'
+          src: ['**/*.coffee']
+          dest: 'config'
+          ext: '.js'
+        ]
     concat:
       development:
         files:
@@ -67,14 +72,21 @@ module.exports = (grunt) ->
     jade:
       development:
         options:
+          pretty: true
           data:
             debug: true
-        files:
-          'build/development/index.html': "#{APP_PATH}/index.jade"
-          'build/development/partials/*.html': "#{APP_PATH}/partials/*.jade"
-    server:
-      port: 8002
-      base: "./#{DEV_PATH}"
+        files: [
+          expand: true
+          cwd: APP_PATH
+          src: ['**/*.jade']
+          dest: 'build/development'
+          ext: '.html'
+        ]
+    connect:
+      server:
+        options:
+          port: 8002
+          base: "./#{DEV_PATH}"
 
     watch:
       coffee:
@@ -116,6 +128,10 @@ module.exports = (grunt) ->
 
 
   # Dependencies
+  grunt.loadNpmTasks 'grunt-contrib-concat'
+  grunt.loadNpmTasks 'grunt-contrib-connect'
+  grunt.loadNpmTasks 'grunt-contrib-watch'
+
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-jade'
   grunt.loadNpmTasks 'grunt-contrib-less'
@@ -138,7 +154,7 @@ module.exports = (grunt) ->
     'config'
     'development'
     'test'
-    'server'
+    'connect:server'
     'watch'
   ]
 
