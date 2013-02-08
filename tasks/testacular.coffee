@@ -14,18 +14,17 @@ module.exports = (grunt) ->
     else
       testCmd = 'node_modules/.bin/testacular'
 
-
-    runner = "--runner-port #{@data.options.runnerPort}"
+    # runner = "--runner-port #{@data.options.runnerPort}"
 
     travisArgs = ['start', '--single-run', '--no-auto-watch', '--reporter=dots', '--browsers=Firefox']
-    testArgs = if process.env.TRAVIS then travisArgs else ['run', runner]
+    testArgs = if process.env.TRAVIS then travisArgs else ['run', '--runner-port', @data.options.runnerPort]
 
     specDone = this.async()
 
     child = grunt.util.spawn {cmd: testCmd, args: testArgs}, (err, result, code) ->
-      #console.log code, result, err
+      # console.log code, result, err
       grunt.log.error("Test failed...", code) if code
       specDone()
-    #console.log child
+    # console.log child
     child.stdout.pipe(process.stdout)
     child.stderr.pipe(process.stderr)
