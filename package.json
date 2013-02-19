@@ -20,9 +20,8 @@
     "grunt-contrib-less": "~0.5.0rc7",
     "grunt-contrib-clean": "~0.4.0rc6",
     "grunt-contrib-jade": "~0.4.0rc7",
-    "testacular": "~0.3.7",
-    "grunt-contrib": "~0.2.0",
+    "testacular": "~0.5.10",
     "grunt-contrib-concat": "~0.1.2rc6",
-    "testacular": "~~0.5.10"
+    "grunt-testacular": "https://github.com/Dignifiedquire/grunt-testacular/tarball/master"
   }
 }

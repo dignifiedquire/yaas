@@ -105,7 +105,7 @@ module.exports = (grunt) ->
         files: ['config/testacular/*.coffee']
         tasks: 'coffee:config'
 
-    testacularServer:
+    testacular:
       unit:
         options:
           configFile: 'config/testacular/unit.js'
@@ -122,11 +122,6 @@ module.exports = (grunt) ->
 
 
 
-  # Custom tasks
-  grunt.loadTasks('tasks')
-
-
-
   # Dependencies
   grunt.loadNpmTasks 'grunt-contrib-concat'
   grunt.loadNpmTasks 'grunt-contrib-connect'
@@ -137,6 +132,8 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-less'
   grunt.loadNpmTasks 'grunt-contrib-copy'
   grunt.loadNpmTasks 'grunt-contrib-clean'
+  
+  grunt.loadNpmTasks 'grunt-testacular'
 
   # Aliases
   grunt.registerTask 'config', 'coffee:config'
@@ -148,7 +145,7 @@ module.exports = (grunt) ->
     'less:development'
   ]
 
-  grunt.registerTask 'test', 'testacularServer'
+  grunt.registerTask 'test', 'testacular'
 
   grunt.registerTask 'default', [
     'config'
