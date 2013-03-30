@@ -10,7 +10,7 @@ Because I'm not satisfied with the seeds out there. [Yeoman](http://yeoman.io) i
 When it's setup it will make your development live much easier. You will be able to use the following awesome and hip technologies
 
 * [Anuglar.js](http://angularjs.org) for the framework
-* [CoffeeScript](http://coffeescript.org/) for the source
+* [CoffeeScript](http://coffeescript.org/) and [browserify](http://browserify.org/) for the source
 * [LESS](http://lesscss.org/) for the style
 * [Bootstrap](twitter.github.com/bootstrap/) with [FontAwesome](http://fortawesome.github.com/Font-Awesome/) for the layout
 * [Jade](http://jade-lang.com/) for the templates
@@ -46,7 +46,7 @@ app/
   index.jade
   app.coffee
 config/
-  testacular/
+  karma/
 vendor/
   img/
   font/
@@ -55,15 +55,15 @@ vendor/
 ```
 
 ## How does this magic happen?
-This project uses [grunt](http://gruntjs.com) for the build process and all the other magic. The tests are run via [testacular](http://vojtajina.github.com/testacular/).
+This project uses [grunt](http://gruntjs.com) for the build process and all the other magic. The tests are run via [karma](http://karma-runner.github.com).
 
 ### Tasks
 
 #### Watch
  * watches all source files and recompiles them on save
 
-#### Testacular Unit/E2E
-* runs a testacular server that watches for changes in the test files
+#### karma Unit/E2E
+* Runs a karma server that watches for changes in the test files
   and runs the tests on save
 
 
