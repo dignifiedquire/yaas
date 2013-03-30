@@ -16,6 +16,7 @@ When it's setup it will make your development live much easier. You will be able
 * [Jade](http://jade-lang.com/) for the templates
 * [Phantomjs](http://phantomjs.org/) for the headless
 * [Mocha](http://visionmedia.github.com/mocha/) and [Chai](http://chaijs.com/) for the tests
+* [Bower](http://twitter.github.com/bower/) for dependencies
 
 ## How do I get it?
 Install it via

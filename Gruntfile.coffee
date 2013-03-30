@@ -24,14 +24,14 @@ module.exports = (grunt) ->
           bundle.transform coffeeify
           shim bundle,
             angular:
-              path: './vendor/script/angular/angular.js'
+              path: './components/angular/angular.js'
               exports: 'angular'
             'angular-cookies':
-              path: './vendor/script/angular/angular-cookies.js'
+              path: './components/angular-cookies/angular-cookies.js'
               exports: null
               depends: angular: 'angular'
             'angular-resource':
-              path: './vendor/script/angular/angular-resource.js'
+              path: './components/angular-resource/angular-resource.js'
               exports: null
               depends: angular: 'angular'
 
@@ -52,7 +52,7 @@ module.exports = (grunt) ->
         options:
           paths: [
             'app/assets/style'
-            'vendor/style'
+            'components'
           ]
         files:
           'build/development/css/app.css': [
@@ -76,14 +76,17 @@ module.exports = (grunt) ->
         options:
           port: 8002
           base: "./#{DEV_PATH}"
+    copy:
+      development:
+        cwd: 'components/font-awesome/'
+        src: 'font/*'
+        dest: 'build/development'
+        expand: true
 
     watch:
       coffee:
         files: ['app/*.coffee', 'app/**/*.coffee']
         tasks: 'browserify2:development'
-      concat:
-        files: ['vendor/script/**/*.js', 'vendor/style/**/*.css']
-        tasks: 'concat:development'
       jade:
         files: ['app/index.jade', 'app/partials/*.jade']
         tasks: 'jade:development'
@@ -124,6 +127,7 @@ module.exports = (grunt) ->
   grunt.registerTask 'config', 'coffee:config'
   grunt.registerTask 'development', [
     'clean:development'
+    'copy:development'
     'browserify2:development'
     'jade:development'
     'less:development'

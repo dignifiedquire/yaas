@@ -14,25 +14,27 @@ html(lang='en')
       script(src='//html5shiv.googlecode.com/svn/trunk/html5.js')
     script(src='/js/app.js')
   body(ng-controller='AppController')
-    .navbar.navbar-fixed-top.navbar-inverse
+    .navbar.navbar-fixed-top
       .navbar-inner
-        .container-fluid
+        .container
           button.btn.btn-navbar(data-toggle='collapse', data-target='.nav-collapse')
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a(href='/').brand YAAS
+          a(href='/').brand
+            | yaas&nbsp;
+            span(app-version)
           .nav-collapse
             div(ng-include="'/partials/navigation.html'")
-    .container-fluid
-      .row-fluid
-        .span12
-          .hero-unit
-            h1 Hello from YAAS
-            p Version:
-              span(app-version)
-          div(ng-view)
-      hr
-      footer
-        p &copy; 2012 Friedel Ziegelmayer | Get the source&nbsp;
+    .jumbotron.masthead
+      .container
+        h1 Welcome to yaas
+        p yet another angular seed
+
+    .container
+      div(ng-view)
+    hr
+    footer
+      .container
+        p &copy; 2013 Friedel Ziegelmayer | Get the source&nbsp;
           a(href='https://github.com/dignifiedquire/yaas') yaas@github
