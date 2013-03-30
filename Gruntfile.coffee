@@ -102,23 +102,18 @@ module.exports = (grunt) ->
         files: ['app/assets/style/*.less']
         tasks: 'jade:development'
       config:
-        files: ['config/testacular/*.coffee']
+        files: ['config/karma/*.coffee']
         tasks: 'coffee:config'
 
-    testacular:
+    karma:
+      options:
+        keepalive: false
       unit:
-        options:
-          configFile: 'config/testacular/unit.js'
+        runnerPort: 9201
+        configFile: 'config/karma/unit.js'
       e2e:
-        options:
-          configFile: 'config/testacular/e2e.js'
-    testacularRun:
-      unit:
-        options:
-          runnerPort: 9201
-      e2e:
-        options:
-          runnerPort: 9202
+        runnerPort: 9202
+        configFile: 'config/karma/e2e.js'
 
 
 
@@ -132,8 +127,8 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-less'
   grunt.loadNpmTasks 'grunt-contrib-copy'
   grunt.loadNpmTasks 'grunt-contrib-clean'
-  
-  grunt.loadNpmTasks 'grunt-testacular'
+
+  grunt.loadNpmTasks 'grunt-karma'
 
   # Aliases
   grunt.registerTask 'config', 'coffee:config'
@@ -145,7 +140,7 @@ module.exports = (grunt) ->
     'less:development'
   ]
 
-  grunt.registerTask 'test', 'testacular'
+  grunt.registerTask 'test', 'karma'
 
   grunt.registerTask 'default', [
     'config'

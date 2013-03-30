@@ -1,18 +1,15 @@
 (function() {
-
   angular.element(document).ready(function() {
     return angular.bootstrap(document, ['app']);
   });
 
   'use strict';
 
-
   window.App = angular.module('app', ['ngCookies', 'ngResource', 'app.controllers', 'app.directives', 'app.filters', 'app.services']);
 
 }).call(this);
 
 (function() {
-
   App.config([
     '$routeProvider', '$locationProvider', function($routeProvider, $locationProvider, config) {
       $routeProvider.when('/view1', {
@@ -31,9 +28,7 @@
 }).call(this);
 
 (function() {
-  'use strict';
-
-  angular.module('app.controllers', ['ngResource']).controller('AppController', [
+  'use strict';  angular.module('app.controllers', ['ngResource']).controller('AppController', [
     '$scope', '$location', '$resource', '$rootScope', function($scope, $location, $resource, $rootScope) {
       $scope.name = 'app controller';
       $scope.$location = $location;
@@ -53,9 +48,7 @@
 }).call(this);
 
 (function() {
-  'use strict';
-
-  angular.module('app.controllers').controller('FirstController', [
+  'use strict';  angular.module('app.controllers').controller('FirstController', [
     '$scope', '$rootScope', function($scope, $rootScope) {
       $scope.name = 'first controller';
       return $rootScope.pageTitle = 'YAAS - View1';
@@ -65,9 +58,7 @@
 }).call(this);
 
 (function() {
-  'use strict';
-
-  angular.module('app.controllers').controller('SecondController', [
+  'use strict';  angular.module('app.controllers').controller('SecondController', [
     '$scope', '$rootScope', function($scope, $rootScope) {
       $scope.name = 'second controller';
       return $rootScope.pageTitle = 'YAAS - View2';
@@ -77,9 +68,7 @@
 }).call(this);
 
 (function() {
-  'use strict';
-
-  angular.module('app.directives', ['app.services']).directive('appVersion', [
+  'use strict';  angular.module('app.directives', ['app.services']).directive('appVersion', [
     'version', function(version) {
       return function(scope, elm, attrs) {
         return elm.text(version);
@@ -90,9 +79,7 @@
 }).call(this);
 
 (function() {
-  'use strict';
-
-  angular.module('app.filters', []).filter('interpolate', [
+  'use strict';  angular.module('app.filters', []).filter('interpolate', [
     'version', function(version) {
       return function(text) {
         return String(text).replace(/\%VERSION\%/mg, version);
@@ -103,9 +90,7 @@
 }).call(this);
 
 (function() {
-  'use strict';
-
-  angular.module('app.services', []).factory('version', function() {
+  'use strict';  angular.module('app.services', []).factory('version', function() {
     return "0.1";
   });
 
