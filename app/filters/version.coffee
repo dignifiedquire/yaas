@@ -1,10 +1,5 @@
 # app/filters/version.coffee
-
-'use strict'
-
-angular.module('app.filters', [])
-
-.filter 'interpolate', [
+module.exports = [
   'version',
 
   (version) ->

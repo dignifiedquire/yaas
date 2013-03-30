@@ -1,14 +1,8 @@
 # app/directives/version.coffee
 
-'use strict'
-
-angular.module('app.directives', [
-  'app.services'
-])
-
-.directive 'appVersion', [
+module.exports = [
   'version'
-  
+
   (version) ->
     (scope, elm, attrs) -> elm.text(version)
 ]

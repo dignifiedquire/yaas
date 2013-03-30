@@ -2,19 +2,17 @@
 #
 # All needed routes get defined in this file
 
-App.config [
+module.exports = [
   '$routeProvider'
   '$locationProvider'
-
   ($routeProvider, $locationProvider, config) ->
 
     $routeProvider
-
-      .when('/view1', 
+      .when('/view1',
         templateUrl: '/partials/first.html'
-        controller: 'FirstController'      
+        controller: 'FirstController'
       )
-      .when('/view2', 
+      .when('/view2',
         templateUrl: '/partials/second.html'
         controller: 'SecondController'
       )

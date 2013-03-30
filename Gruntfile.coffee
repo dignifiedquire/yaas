@@ -1,3 +1,7 @@
+# Browserify requires
+coffeeify = require 'coffeeify'
+shim = require 'browserify-shim'
+
 module.exports = (grunt) ->
 
   # Constants
@@ -11,17 +15,27 @@ module.exports = (grunt) ->
     clean:
       development: [DEV_PATH]
 
-    coffee:
+    browserify2:
       development:
-        files:
-          'build/development/js/app.js': [
-            'app/app.coffee'
-            'app/routes.coffee'
-            'app/controllers/*.coffee'
-            'app/directives/*.coffee'
-            'app/filters/*.coffee'
-            'app/services/*.coffee'
-          ]
+        entry: './app/app.coffee'
+        compile: './build/development/js/app.js'
+        debug: yes
+        beforeHook: (bundle)->
+          bundle.transform coffeeify
+          shim bundle,
+            angular:
+              path: './vendor/script/angular/angular.js'
+              exports: 'angular'
+            'angular-cookies':
+              path: './vendor/script/angular/angular-cookies.js'
+              exports: null
+              depends: angular: 'angular'
+            'angular-resource':
+              path: './vendor/script/angular/angular-resource.js'
+              exports: null
+              depends: angular: 'angular'
+
+    coffee:
       config:
         options:
           bare: true
@@ -32,32 +46,7 @@ module.exports = (grunt) ->
           dest: 'config'
           ext: '.js'
         ]
-    concat:
-      development:
-        files:
-          'build/development/js/vendor.js': [
-            'vendor/script/jquery/jquery.js'
-            'vendor/script/bootstrap/transition.js'
-            'vendor/script/bootstrap/alert.js'
-            'vendor/script/bootstrap/modal.js'
-            'vendor/script/bootstrap/dropdown.js'
-            'vendor/script/bootstrap/scrollspy.js'
-            'vendor/script/bootstrap/tab.js'
-            'vendor/script/bootstrap/tooltip.js'
-            'vendor/script/bootstrap/popover.js'
-            'vendor/script/bootstrap/button.js'
-            'vendor/script/bootstrap/collapse.js'
-            'vendor/script/bootstrap/carousel.js'
-            'vendor/script/bootstrap/typeahead.js'
-            'vendor/script/bootstrap/affix.js'
-            'vendor/script/angular/angular.js'
-            'vendor/script/angular/angular-resource.js'
-            'vendor/script/angular/angular-cookies.js'
-            'vendor/script/angular/angular-loader.js'
-            'vendor/script/angular/angular-sanitize.js'
-            #'vendor/script/**/*.js'
-          ]
-          'build/development/js/vendor.css': 'vendor/style/**/*.css'
+
     less:
       development:
         options:
@@ -91,7 +80,7 @@ module.exports = (grunt) ->
     watch:
       coffee:
         files: ['app/*.coffee', 'app/**/*.coffee']
-        tasks: 'coffee:development'
+        tasks: 'browserify2:development'
       concat:
         files: ['vendor/script/**/*.js', 'vendor/style/**/*.css']
         tasks: 'concat:development'
@@ -129,14 +118,14 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-clean'
 
   grunt.loadNpmTasks 'grunt-karma'
+  grunt.loadNpmTasks 'grunt-browserify2'
 
   # Aliases
   grunt.registerTask 'config', 'coffee:config'
   grunt.registerTask 'development', [
     'clean:development'
-    'coffee:development'
+    'browserify2:development'
     'jade:development'
-    'concat:development'
     'less:development'
   ]
 
@@ -145,12 +134,8 @@ module.exports = (grunt) ->
   grunt.registerTask 'default', [
     'config'
     'development'
-    'test'
+#    'test'
     'connect:server'
     'watch'
   ]
-
-
-
-
 

@@ -1,8 +1,6 @@
 # app/controllers/app_controller.coffee
 
-'use strict'
-
-angular.module('app.controllers', ['ngResource']).controller 'AppController', [
+module.exports = [
   '$scope'
   '$location'
   '$resource'
@@ -31,5 +29,4 @@ angular.module('app.controllers', ['ngResource']).controller 'AppController', [
         return 'active'
       else
         return ''
-    
 ]
